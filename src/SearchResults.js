@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
 import InfiniteScroll from 'react-infinite-scroll-component'
+import YouTubeRecord from "./YouTubeRecord";
 
 class SearchResults extends Component {
 
@@ -24,10 +25,7 @@ class SearchResults extends Component {
       <InfiniteScroll hasMore={true}
                       style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', paddingTop: '4rem'}}
                       next={this.props.loadMoreEntries}>
-        {items.map(item => <div key={item.id.videoId}>
-          <img style={{borderRadius: 4, margin: '1rem'}}
-               src={`https://img.youtube.com/vi/${item.id.videoId}/hqdefault.jpg`}/>
-        </div>)}
+        {items.map(item => <YouTubeRecord key={item.id.videoId} item={item}/>)}
       </InfiniteScroll>
     );
   }
